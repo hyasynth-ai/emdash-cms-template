@@ -7,7 +7,7 @@
 	"d1_databases": [
 		{
 			"binding": "DB",
-			"database_name": "my-marketing-site","database_id": "2d86f27e-c177-4017-bdd8-50b2298217ae",
+			"database_name": "my-marketing-site","database_id": "8f9e4c06-dea4-475e-91a5-3d35e38aaadd",
 		},
 	],
 	"r2_buckets": [

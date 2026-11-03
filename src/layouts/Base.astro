@@ -16,9 +16,14 @@ interface Props {
 	canonical?: string | null;
 	robots?: string | null;
 	content?: { collection: string; id: string; slug?: string | null };
+	type?: "website" | "article";
+	publishedTime?: string | null;
+	modifiedTime?: string | null;
+	author?: string | null;
 }
 
-const { title, pageTitle, description, image, canonical, robots, content } = Astro.props;
+const { title, pageTitle, description, image, canonical, robots, content, type, publishedTime, modifiedTime, author } =
+	Astro.props;
 const [settingsResult, menuResult, footerProductResult, footerCompanyResult, footerSupportResult] =
 	await Promise.all([
 		getSiteSettingsWithCacheHint(),
@@ -63,7 +68,8 @@ const footerColumns = [footerProductResult, footerCompanyResult, footerSupportRe
 const pageCtx = createPublicPageContext({
 	Astro,
 	kind: content ? "content" : "custom",
-	pageType: "website",
+	pageType: type ?? "website",
+	articleMeta: { publishedTime, modifiedTime, author },
 	title: fullTitle,
 	pageTitle: pageTitle ?? title ?? siteTitle,
 	description: description || siteTagline || undefined,
