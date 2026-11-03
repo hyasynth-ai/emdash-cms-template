@@ -203,37 +203,3 @@
 		}
 	}
 }
-
-/* Blog bridge: variables the blog pages use. Colour roles alias marketing tokens. */
-:root {
-	--avatar-size-lg: 40px;
-	--avatar-size-md: 32px;
-	--avatar-size-sm: 24px;
-	--avatar-size-xs: 20px;
-	--card-padding: 6px;
-	--color-border-subtle: var(--color-border);
-	--color-brand-hover: var(--color-brand-strong);
-	--color-fill: var(--color-sunken);
-	--color-fill-strong: var(--color-border);
-	--color-media-outline: var(--color-border);
-	--content-width: 680px;
-	--font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
-	--font-size-label: 0.75rem;
-	--frame-padding: clamp(1rem, 3vw, 2rem);
-	--frame-width: min(100% - 2 * var(--frame-margin), var(--wide-width));
-	--gutter-width: 200px;
-	--meta-col-width: 180px;
-	--nav-height: 64px;
-	--prose-color: var(--color-text);
-	--spacing-1: 0.25rem;
-	--spacing-10: 2.5rem;
-	--spacing-16: 4rem;
-	--spacing-2: 0.5rem;
-	--spacing-3: 0.75rem;
-	--spacing-4: 1rem;
-	--spacing-5: 1.25rem;
-	--spacing-6: 1.5rem;
-	--spacing-8: 2rem;
-	--tag-padding-y: 2px;
-	--tracking-wider: 0.08em;
-}

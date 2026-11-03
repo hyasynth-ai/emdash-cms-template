@@ -18,7 +18,9 @@ The admin UI is at `http://localhost:4321/_emdash/admin`.
 | `seed/seed.json`         | Schema definition + demo content (collections, fields, taxonomies, menus, widgets) |
 | `emdash-env.d.ts`        | Generated types for collections (auto-regenerated on dev server start)             |
 | `src/layouts/Base.astro` | Base layout with EmDash wiring (menus, search, page contributions)                 |
-| `src/pages/`             | Astro pages -- all server-rendered                                                 |
+| `src/pages/`             | Astro pages -- all server-rendered. Marketing at the root, the blog under `blog/`   |
+| `src/layouts/BlogLayout.astro` | Wraps `Base.astro` for every blog page; adds the blog-only search bar         |
+| `src/styles/blog.css`    | The only blog stylesheet, scoped to `.blog-page`; maps blog variables onto marketing tokens |
 
 ## Skills
 
@@ -44,7 +46,9 @@ This template ships with `.mcp.json`, `.cursor/mcp.json`, and `.vscode/mcp.json`
 
 ## This Template
 
-A photo-led marketing site template built entirely from modular content blocks: hero, logo wall, features, text and image, stats, testimonials, pricing, FAQ, call to action, contact options, and long-form text. Designed for product and service marketing sites that need a hero, supporting sections, pricing, and a closing call to action.
+A starter that merges the EmDash marketing and blog templates. Marketing pages are authored as modular content blocks in the `pages` collection and live at the root; the blog (`posts` collection, categories, tags, search, RSS, bylines, comments, sidebar widgets) lives under `/blog`. Both use one design system: the marketing tokens. Keep it that way -- do not add blog-only colours, fonts or button styles.
+
+The marketing side is a photo-led site built from modular content blocks: hero, logo wall, features, text and image, stats, testimonials, pricing, FAQ, call to action, contact options, and long-form text. Designed for product and service marketing sites that need a hero, supporting sections, pricing, and a closing call to action.
 
 The demo content is Halden, a fictional energy-intelligence company for commercial buildings. The voice is calm and specific, with concrete outcomes instead of superlatives. Replace the copy and photos with your own.
 
@@ -56,15 +60,29 @@ The demo content is Halden, a fictional energy-intelligence company for commerci
 | Pricing | `/pricing` | The same block editor, with a centred hero, three pricing plans, a pricing FAQ, and a call to action without a photo                                                                                                                       |
 | Contact | `/contact` | The same block editor, with a centred hero and contact options linking to the general, support, and sales email addresses                                                                                                                  |
 
-There is no posts collection. Content is entirely authored as marketing blocks inside `pages`.
+Blog routes (all use `BlogLayout.astro`):
+
+| Path | What it shows |
+| ---- | ------------- |
+| `/blog` | Featured post (needs a featured image) and the latest posts |
+| `/blog/all` | Every post, paginated |
+| `/blog/{slug}` | A post, with table of contents, byline, comments and the `sidebar` widget area |
+| `/blog/category/{slug}`, `/blog/tag/{slug}` | Posts in a taxonomy term |
+| `/blog/search?q=` | Search results; the live search bar sits at the top of every blog page |
+| `/rss.xml` | RSS feed |
+
+EmDash's built-in Categories, Tags and Search widgets link to fixed `/category/{slug}`, `/tag/{slug}` and `/search` paths and cannot be configured. `src/pages/category`, `src/pages/tag` and `src/pages/search.ts` are 301 redirects into `/blog/...` for that reason. Don't use the post slugs `all`, `search`, `category` or `tag`.
+
+Marketing pages are blocks inside `pages`; posts use a rich-text (`portableText`) field.
 
 `src/pages/index.astro` renders the `home` entry at `/`, and `src/pages/[slug].astro` renders every other page at `/{slug}`, so a page created or renamed in the admin works without a new route file; renaming a slug also adds an automatic redirect from the old URL. A slug with no page renders the 404 page. When a page has no hero, its title renders above the blocks as the `h1` (the home page shows the site title instead). A page without blocks shows only that heading to visitors, plus a link to edit it for logged-in editors; if the `home` entry is missing, the home page shows the site title and tagline, and editors get a link to create the page.
 
 ## Schema
 
 - `pages` collection: `title`, `content` (a first-class `blocks` field). Its `/{slug}` URL pattern drives admin links, previews, and the sitemap; `src/pages/home.astro` redirects `/home` to `/`, keeping the query string so Home's preview links work.
-- No taxonomies.
-- Four menus: `primary` (the header links), plus `footer_product`, `footer_company`, and `footer_support` (the footer's Product, Company, and Support columns). The seeded links point at home page sections (`/#platform`, `/#monitoring`, `/#planning`, `/#customers`, `/#faq`), the pricing and contact pages, and `mailto:` addresses. A `primary` item with the CSS class `button` renders as a header button instead of a link (the seeded Book a demo item); on narrow screens only the first button stays in the header and the rest move into the menu. Each footer column's heading is its menu's label. Only the `button` class has an effect. Change menu labels and item classes in the admin's menu editor: the pencil button next to a menu's title renames it, and an item's **CSS classes** field sets its classes. The MCP `menu_update` and `menu_set_items` tools change them too. Applying the seed to an existing site doesn't rename menus that already exist.
+- `posts` collection: title, content (`portableText`), excerpt, featured image, comments, search, SEO, drafts, revisions and scheduling. URL pattern `/blog/{slug}`.
+- Taxonomies: hierarchical `category` and flat `tag`. Bylines, and a `sidebar` widget area (categories, tags, recent posts, archives).
+- Four menus: `primary` (the header links, including Blog), plus `footer_product`, `footer_company`, and `footer_support` (the footer's Product, Company, and Support columns). The seeded links point at home page sections (`/#platform`, `/#monitoring`, `/#planning`, `/#customers`, `/#faq`), the pricing and contact pages, and `mailto:` addresses. A `primary` item with the CSS class `button` renders as a header button instead of a link (the seeded Book a demo item); on narrow screens only the first button stays in the header and the rest move into the menu. Each footer column's heading is its menu's label. Only the `button` class has an effect. Change menu labels and item classes in the admin's menu editor: the pencil button next to a menu's title renames it, and an item's **CSS classes** field sets its classes. The MCP `menu_update` and `menu_set_items` tools change them too. Applying the seed to an existing site doesn't rename menus that already exist.
 
 Site settings have `title` and `tagline`. The title renders as the serif wordmark in the header and footer (a logo set in site settings replaces it there) and as the giant cropped wordmark at the bottom of every page; an empty title shows "My Site". The tagline renders in the footer when set.
 
@@ -127,6 +145,8 @@ Motion is CSS only and switches off under `prefers-reduced-motion: reduce`: a st
 The demo photography comes from Unsplash, whose licence allows free commercial use without attribution. With sample content, setup downloads four photos into the media library. The testimonials show initials instead of portraits: the quoted people are fictional, and a stock portrait would present a real person as one of them.
 
 ## Customisation
+
+One design system covers marketing and blog. Restyle only through tokens: blog pages read the same variables as the marketing blocks, and `blog.css` opens with a bridge that points the few blog-only variables (for example `--color-fill`, `--content-width`) at marketing tokens, so a token change reaches both. Blog headings use `--font-display`; the blog container is `.frame`, which uses `--wide-width` and `--gutter`. Blog code must use the marketing `.btn` classes and the shared type classes, not its own.
 
 Design tokens live in `src/styles/tokens.css` with their default values. To restyle the site, override tokens in `src/styles/theme.css` -- declarations there are unlayered, so they always beat the `@layer base` defaults. Don't edit `tokens.css` or `Base.astro` for visual changes.
 

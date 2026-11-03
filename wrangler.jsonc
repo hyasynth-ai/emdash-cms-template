@@ -1,26 +1,19 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "my-marketing-site",
+	"name": "my-marketing-blog-site",
 	"main": "./src/worker.ts",
 	"compatibility_date": "2026-02-24",
 	"compatibility_flags": ["nodejs_compat"],
 	"d1_databases": [
 		{
 			"binding": "DB",
-			"database_name": "my-marketing-site","database_id": "8f9e4c06-dea4-475e-91a5-3d35e38aaadd",
+			"database_name": "my-marketing-blog-site",
 		},
 	],
-	"kv_namespaces": [{ "binding": "SESSION", "id": "120b3cb3eef44831a17e608a4499c365" }],
-	// Preview deploys read this block, not the top-level bindings; the adapter injects a bare SESSION binding (error 10021) if it has no id.
-	"previews": {
-		"d1_databases": [{ "binding": "DB", "database_id": "8f9e4c06-dea4-475e-91a5-3d35e38aaadd" }],
-		"r2_buckets": [{ "binding": "MEDIA", "bucket_name": "my-marketing-media" }],
-		"kv_namespaces": [{ "binding": "SESSION", "id": "120b3cb3eef44831a17e608a4499c365" }],
-	},
 	"r2_buckets": [
 		{
 			"binding": "MEDIA",
-			"bucket_name": "my-marketing-media","preview_bucket_name": "my-marketing-media",
+			"bucket_name": "my-marketing-blog-media",
 		},
 	],
 	// Sandboxed plugins require Worker Loader, available on Workers paid plans. Uncomment to enable:
@@ -29,4 +22,11 @@
 	"triggers": {
 		"crons": ["* * * * *"],
 	},
+	// Preview deploys (non-production branches) do not auto-provision bindings. To use them, create
+	// the resources once, then uncomment and fill in the ids (see README, "Preview deploys"):
+	// "previews": {
+	// 	"d1_databases": [{ "binding": "DB", "database_id": "<D1 id>" }],
+	// 	"r2_buckets": [{ "binding": "MEDIA", "bucket_name": "my-marketing-blog-media" }],
+	// 	"kv_namespaces": [{ "binding": "SESSION", "id": "<KV id>" }],
+	// },
 }
