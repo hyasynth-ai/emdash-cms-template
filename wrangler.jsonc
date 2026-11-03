@@ -10,6 +10,7 @@
 			"database_name": "my-marketing-site","database_id": "8f9e4c06-dea4-475e-91a5-3d35e38aaadd",
 		},
 	],
+	"kv_namespaces": [{ "binding": "SESSION", "id": "120b3cb3eef44831a17e608a4499c365" }],
 	"r2_buckets": [
 		{
 			"binding": "MEDIA",
