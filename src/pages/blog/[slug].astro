@@ -146,7 +146,7 @@ const hasHeadings = (post.data.content ?? []).some(
 							<ul class="chips post-header__tags" aria-label="Tags">
 								{tags.map((t) => (
 									<li>
-										<a href={`/tag/${t.slug}`} class="chip">
+										<a href={`/blog/tag/${t.slug}`} class="chip">
 											{t.label}
 										</a>
 									</li>
