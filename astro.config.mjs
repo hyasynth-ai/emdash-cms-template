@@ -13,6 +13,18 @@ export default defineConfig({
 		responsiveStyles: true,
 	},
 	vite: {
+		plugins: [
+			{
+				// Keep light-dark() native. Minifier lowers it to prefers-color-scheme vars for targets
+				// below Chrome 123 / Safari 17.5 / Firefox 120, which breaks the class-based Light/Dark
+				// toggle. @cloudflare/vite-plugin forces cssTarget "es2024" (Safari 17.4), so pin it after.
+				name: "css-target-light-dark",
+				enforce: "post",
+				configResolved(config) {
+					config.build.cssTarget = ["chrome123", "safari17.5", "firefox120"];
+				},
+			},
+		],
 		ssr: {
 			optimizeDeps: {
 				// Pre-bundle so it isn't discovered mid-render, which would trigger
