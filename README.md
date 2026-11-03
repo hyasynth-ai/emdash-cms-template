@@ -1,4 +1,4 @@
-# EmDash Marketing Template (Cloudflare)
+# EmDash Marketing Template (Cloudflare) -
 
 A conversion-focused landing page template built with [EmDash](https://github.com/emdash-cms/emdash) and deployed on Cloudflare Workers with D1 and R2. Modular content blocks let you assemble pages from reusable sections without touching code.
 
