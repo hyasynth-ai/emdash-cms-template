@@ -2130,11 +2130,6 @@
       "widgets": [
         {
           "type": "component",
-          "componentId": "core:search",
-          "title": "Search"
-        },
-        {
-          "type": "component",
           "componentId": "core:categories",
           "title": "Categories"
         },
