@@ -89,8 +89,10 @@ Redeploying afterwards starts from an empty database and re-applies the seed at 
 If you only want the marketing site:
 
 1. Delete `src/pages/blog/`, `src/pages/category/`, `src/pages/tag/`, `src/pages/search.ts`, `src/pages/rss.xml.ts`, `src/layouts/BlogLayout.astro`, `src/styles/blog.css`, `src/styles/prose.css`, and the blog-only components and utils (`PostCard`, `Byline`, `Pagination`, `utils/locale.ts`, `utils/reading-time.ts`, `utils/site-identity.ts`).
-2. In `seed/seed.json`, remove the `posts` collection, the `category` and `tag` taxonomies, `bylines`, the `sidebar` widget area, the sample posts, and the "Blog" menu item.
-3. Run `pnpm exec astro check` and `pnpm build`.
+2. In `seed/seed.json`, remove the `posts` collection, the `category` and `tag` taxonomies, `bylines`, `sections`, the `sidebar` widget area, the `posts` entries under `content`, and the "Blog" menu item.
+3. Run `pnpm exec astro check` and `pnpm build`. Optionally run `npx emdash types` to drop the `posts` types from `emdash-env.d.ts`.
+
+This path was tested: the marketing pages build and serve with the blog removed.
 
 ## License
 
