@@ -11,6 +11,8 @@
 		},
 	],
 	"kv_namespaces": [{ "binding": "SESSION", "id": "120b3cb3eef44831a17e608a4499c365" }],
+	// Preview deploys read this block; without an id the adapter injects a bare SESSION binding (error 10021).
+	"previews": { "kv_namespaces": [{ "binding": "SESSION", "id": "120b3cb3eef44831a17e608a4499c365" }] },
 	"r2_buckets": [
 		{
 			"binding": "MEDIA",
