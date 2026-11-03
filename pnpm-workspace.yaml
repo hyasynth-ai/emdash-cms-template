@@ -13,3 +13,8 @@ minimumReleaseAgeExclude:
   - emdash
   - "@emdash-cms/*"
 blockExoticSubdeps: true
+
+# GHSA-mrhx-c7xc-m3w5: zod <4.6.6 can exhaust memory validating oversized collections.
+# Reached through emdash's admin deps; drop this once emdash bumps it.
+overrides:
+  "zod@<4.6.6": "4.6.7"
