@@ -11,8 +11,12 @@
 		},
 	],
 	"kv_namespaces": [{ "binding": "SESSION", "id": "120b3cb3eef44831a17e608a4499c365" }],
-	// Preview deploys read this block; without an id the adapter injects a bare SESSION binding (error 10021).
-	"previews": { "kv_namespaces": [{ "binding": "SESSION", "id": "120b3cb3eef44831a17e608a4499c365" }] },
+	// Preview deploys read this block, not the top-level bindings; the adapter injects a bare SESSION binding (error 10021) if it has no id.
+	"previews": {
+		"d1_databases": [{ "binding": "DB", "database_id": "8f9e4c06-dea4-475e-91a5-3d35e38aaadd" }],
+		"r2_buckets": [{ "binding": "MEDIA", "bucket_name": "my-marketing-media" }],
+		"kv_namespaces": [{ "binding": "SESSION", "id": "120b3cb3eef44831a17e608a4499c365" }],
+	},
 	"r2_buckets": [
 		{
 			"binding": "MEDIA",
