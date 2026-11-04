@@ -2,11 +2,14 @@
 import LiveSearch from "emdash/ui/search";
 import Base from "./Base.astro";
 import "../styles/blog.css";
+
+// The search page has its own form.
+const showSearch = !Astro.url.pathname.startsWith("/blog/search");
 ---
 
 <Base {...Astro.props}>
 	<div class="blog-page">
-		<div class="frame blog-search-bar">
+		{showSearch && <div class="frame blog-search-bar">
 			<div class="site-search" role="search" aria-label="Blog">
 				<svg class="site-search__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
 				<LiveSearch
@@ -18,7 +21,7 @@ import "../styles/blog.css";
 					collections={["posts"]}
 				/>
 			</div>
-		</div>
+		</div>}
 		<slot />
 	</div>
 </Base>

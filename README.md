@@ -12,6 +12,16 @@ It runs on Cloudflare Workers with D1, R2 and KV, and stays a starter: demo cont
 
 **Blog** (from the blog template): post index and archive, post pages with table of contents, categories, tags, live search, RSS, bylines, comments, sidebar widgets (categories, tags, recent posts, archives).
 
+## Screenshots
+
+| | Desktop | Mobile |
+|---|---|---|
+| Marketing, light | ![home light desktop](docs/screenshots/home-light-desktop.jpg) | ![home light mobile](docs/screenshots/home-light-mobile.jpg) |
+| Marketing, dark | ![home dark desktop](docs/screenshots/home-dark-desktop.jpg) | ![home dark mobile](docs/screenshots/home-dark-mobile.jpg) |
+| Blog, light | ![blog light desktop](docs/screenshots/blog-light-desktop.jpg) | ![blog light mobile](docs/screenshots/blog-light-mobile.jpg) |
+| Blog, dark | ![blog dark desktop](docs/screenshots/blog-dark-desktop.jpg) | ![blog dark mobile](docs/screenshots/blog-dark-mobile.jpg) |
+| Post, light / dark | ![post light desktop](docs/screenshots/post-light-desktop.jpg) | ![post dark desktop](docs/screenshots/post-dark-desktop.jpg) |
+
 ## Routes
 
 | Route | What it shows |
