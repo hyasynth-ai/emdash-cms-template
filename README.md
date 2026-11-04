@@ -10,7 +10,7 @@ It runs on Cloudflare Workers with D1, R2 and KV, and stays a starter: demo cont
 
 **Marketing** (from the marketing template): hero, logo wall, features, text and image, stats, testimonials, pricing, FAQ, call to action, contact options, SEO metadata and JSON-LD, dark/light/system theme.
 
-**Blog** (from the blog template): post index and archive, post pages with table of contents, categories, tags, live search, RSS, bylines, comments, sidebar widgets (categories, tags, recent posts, archives).
+**Blog** (from the blog template): post index and archive, post pages with table of contents, categories, tags, live search, RSS, bylines, comments (built in, off by default: set `commentsEnabled` on the `posts` collection), sidebar widgets (categories, tags, recent posts, archives).
 
 ## Screenshots
 

@@ -820,7 +820,7 @@
         "search",
         "seo"
       ],
-      "commentsEnabled": true,
+      "commentsEnabled": false,
       "fields": [
         {
           "slug": "title",

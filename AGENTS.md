@@ -66,7 +66,7 @@ Blog routes (all use `BlogLayout.astro`):
 | ---- | ------------- |
 | `/blog` | Featured post (needs a featured image) and the latest posts |
 | `/blog/all` | Every post, paginated |
-| `/blog/{slug}` | A post, with table of contents, byline, comments and the `sidebar` widget area |
+| `/blog/{slug}` | A post, with table of contents, byline and the `sidebar` widget area |
 | `/blog/category/{slug}`, `/blog/tag/{slug}` | Posts in a taxonomy term |
 | `/blog/search?q=` | Search results; the live search bar sits at the top of every blog page |
 | `/rss.xml` | RSS feed |
@@ -80,7 +80,7 @@ Marketing pages are blocks inside `pages`; posts use a rich-text (`portableText`
 ## Schema
 
 - `pages` collection: `title`, `content` (a first-class `blocks` field). Its `/{slug}` URL pattern drives admin links, previews, and the sitemap; `src/pages/home.astro` redirects `/home` to `/`, keeping the query string so Home's preview links work.
-- `posts` collection: title, content (`portableText`), excerpt, featured image, comments, search, SEO, drafts, revisions and scheduling. URL pattern `/blog/{slug}`.
+- `posts` collection: title, content (`portableText`), excerpt, featured image, search, SEO, drafts, revisions and scheduling. URL pattern `/blog/{slug}`.
 - Taxonomies: hierarchical `category` and flat `tag`. Bylines, and a `sidebar` widget area (categories, tags, recent posts, archives).
 - Four menus: `primary` (the header links, including Blog), plus `footer_product`, `footer_company`, and `footer_support` (the footer's Product, Company, and Support columns). The seeded links point at home page sections (`/#platform`, `/#monitoring`, `/#planning`, `/#customers`, `/#faq`), the pricing and contact pages, and `mailto:` addresses. A `primary` item with the CSS class `button` renders as a header button instead of a link (the seeded Book a demo item); on narrow screens only the first button stays in the header and the rest move into the menu. Each footer column's heading is its menu's label. Only the `button` class has an effect. Change menu labels and item classes in the admin's menu editor: the pencil button next to a menu's title renames it, and an item's **CSS classes** field sets its classes. The MCP `menu_update` and `menu_set_items` tools change them too. Applying the seed to an existing site doesn't rename menus that already exist.
 
