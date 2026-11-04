@@ -19,6 +19,8 @@ const showSearch = !Astro.url.pathname.startsWith("/blog/search");
 					resultsClass="site-search-results"
 					resultClass="site-search-result"
 					collections={["posts"]}
+					routeMap={{ posts: "/blog/:slug" }}
+					searchPage="/blog/search"
 				/>
 			</div>
 		</div>}
