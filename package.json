@@ -2,6 +2,7 @@
   "name": "my-marketing-blog-site",
 	"description": "EmDash starter for Cloudflare: a marketing site (block pages) plus a full blog at /blog, on one shared design system.",
   "version": "0.0.3",
+  "repository": "github:hyasynth-ai/emdash-cms-template",
   "private": true,
   "type": "module",
   "emdash": {
