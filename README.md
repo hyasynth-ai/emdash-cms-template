@@ -4,7 +4,7 @@ A starter that combines two official [EmDash](https://github.com/emdash-cms/emda
 
 It runs on Cloudflare Workers with D1, R2 and KV, and stays a starter: demo content you replace, no extra features.
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/OWNER/REPO)
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/hyasynth-ai/emdash-cms-template)
 
 ## What's included
 
