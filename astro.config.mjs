@@ -1,5 +1,6 @@
 import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
+import tailwindcss from "@tailwindcss/vite";
 import { d1, r2 } from "@emdash-cms/cloudflare";
 import icon from "astro-iconset";
 import { defineConfig, fontProviders } from "astro/config";
@@ -14,6 +15,7 @@ export default defineConfig({
 	},
 	vite: {
 		plugins: [
+			tailwindcss(),
 			{
 				// Keep light-dark() native. Minifier lowers it to prefers-color-scheme vars for targets
 				// below Chrome 123 / Safari 17.5 / Firefox 120, which breaks the class-based Light/Dark

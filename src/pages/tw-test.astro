@@ -1,0 +1,16 @@
+---
+import Base from "../layouts/Base.astro";
+import ShadcnDemo from "../components/ShadcnDemo";
+---
+<Base title="Tailwind layering test">
+	<main class="container" style="padding-block:4rem">
+		<h2 id="h2-util" class="text-sm">h2 with text-sm (Base h2 = 2rem)</h2>
+		<p id="p-util" class="text-2xl text-primary">p with text-2xl text-primary</p>
+		<a id="btn-util" href="#" class="btn btn-secondary rounded-none">.btn + rounded-none</a>
+		<div id="border-util" class="border border-border p-4 mt-4 rounded-lg bg-card">border + rounded-lg + bg-card</div>
+		<div id="dark-util" class="p-4 mt-4 bg-white text-black dark:bg-black dark:text-white">dark: variant</div>
+		<div id="muted-util" class="p-4 mt-4 bg-muted text-muted-foreground">bg-muted</div>
+		<div id="accent-util" class="p-4 mt-4 bg-accent text-accent-foreground">bg-accent</div>
+		<div class="mt-8"><ShadcnDemo client:load /></div>
+	</main>
+</Base>

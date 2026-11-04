@@ -1,6 +1,6 @@
 {
   "name": "my-marketing-blog-site",
-	"description": "EmDash starter for Cloudflare: a marketing site (block pages) plus a full blog at /blog, on one shared design system.",
+  "description": "EmDash starter for Cloudflare: a marketing site (block pages) plus a full blog at /blog, on one shared design system.",
   "version": "0.0.3",
   "repository": "github:hyasynth-ai/emdash-cms-template",
   "private": true,
@@ -22,11 +22,18 @@
     "@astrojs/react": "7.1.2",
     "@emdash-cms/cloudflare": "1.4.0",
     "@iconify-json/ph": "1.2.2",
+    "@radix-ui/react-slot": "1.5.0",
+    "@tailwindcss/vite": "4.3.4",
     "astro": "7.4.5",
     "astro-iconset": "0.0.4",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
     "emdash": "1.4.0",
+    "lucide-react": "1.66.0",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "tailwind-merge": "3.7.0",
+    "tailwindcss": "4.3.4"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.12",
