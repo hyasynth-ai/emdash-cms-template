@@ -76,6 +76,16 @@ pnpm deploy
 
 The first deployment provisions the D1 database, R2 bucket and KV namespace named in `wrangler.jsonc`. Complete the setup wizard at `/_emdash/admin` on the deployed URL; the seed is applied then, on an empty database only. See [Deploy to Cloudflare](https://docs.emdashcms.com/deployment/cloudflare/), or use the button above.
 
+### Starting your own site from this template
+
+Use GitHub's "Use this template" button, then in your new repo:
+
+1. In `wrangler.jsonc`, set `name`, the D1 `database_name` and the R2 `bucket_name` to your own names. Cloudflare resource names are lowercase letters, numbers and dashes, so `example.com` becomes `example-com`.
+2. In `package.json`, set `name`, `description` and `repository`.
+3. Create the Cloudflare project with the same name as `name` in `wrangler.jsonc` and deploy.
+4. After the setup wizard, replace the Halden demo content: site title and tagline, pages, posts, menus, and photos.
+5. Keep `LICENSE` as is and add your own copyright line under the existing ones.
+
 ### Preview deploys
 
 Non-production branches don't auto-provision bindings, so a preview build fails with `binding SESSION of type kv_namespace must have a namespace_id specified [code: 10021]`. After the first production deploy, copy the D1 and KV ids from the Cloudflare dashboard into the commented `previews` block in `wrangler.jsonc` and uncomment it. A preview that uses those ids reads and writes the same data as production.
