@@ -90,6 +90,24 @@ Use GitHub's "Use this template" button, then in your new repo:
 
 Non-production branches don't auto-provision bindings, so a preview build fails with `binding SESSION of type kv_namespace must have a namespace_id specified [code: 10021]`. After the first production deploy, copy the D1 and KV ids from the Cloudflare dashboard into the commented `previews` block in `wrangler.jsonc` and uncomment it. A preview that uses those ids reads and writes the same data as production.
 
+### Troubleshooting: "Database migrations are required"
+
+A 503 reading `Database migrations are required. Apply the deployment migration manifest and retry.` means EmDash could not finish its database migrations during a request. Two causes to check:
+
+- **Workers Free plan.** D1 allows 50 queries per Worker invocation on Free (1000 on Paid), and the first request runs every migration. If it runs out, it stops partway and can leave the migration lock held. Use the Workers Paid plan, or apply migrations from your machine as below.
+- **Held lock.** A first request that was interrupted (a deploy, a timeout, or the cron trigger racing the first visit) can leave the lock held. EmDash stops retrying and waits for a person to release it.
+
+Apply or inspect migrations from your machine instead of the Worker. You need the account id and a Cloudflare login (`pnpm wrangler login`, or an API token with D1 edit rights in `CLOUDFLARE_API_TOKEN`; I have not tested a token-only run):
+
+```bash
+pnpm migrate:status --account-id <account id>          # lists pending migrations and shows the lock id, if held
+pnpm migrate --account-id <account id>                 # applies pending migrations
+pnpm migrate --account-id <account id> --release-lock <lock id>   # only when no migration is running
+pnpm migrate --account-id <account id> --take-over-lock <lock id> # releases the lock and applies in one step
+```
+
+Add `--d1 <name or id>` if the database name in `wrangler.jsonc` doesn't resolve on its own. If a deploy leaves the database half-migrated, the clean fix is to delete the D1 database and redeploy (see Tearing down).
+
 ### Tearing down
 
 To delete everything a deployment created (use the dashboard, or wrangler):
